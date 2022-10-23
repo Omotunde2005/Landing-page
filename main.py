@@ -11,9 +11,9 @@ from email.mime.multipart import MIMEMultipart
 import datetime as dt
 import smtplib
 import time
+import os
 DATE = dt.datetime.now().year
-PASSWORD = "wtkkbbynyxxwhbfw"
-EMAIL = "Oyinloyequareeboyinloye@gmail.com"
+
 
 
 app = Flask(__name__)
@@ -64,7 +64,7 @@ def register():
         user_name = request.form["name"]
         message = MIMEMultipart("alternative")
         message["Subject"] = "Lets Goo! Your 6-Figure Ebook is inside!"
-        message["From"] = EMAIL
+        message["From"] = os.getenv("EMAIL")
         message["To"] = user_email
         html = f"""\
         <h1>Hi, {user_name}</h1>
@@ -84,7 +84,7 @@ If you use Gmail, just drag this email over to the “Primary” tab and drop it
 
 Trust me, you don't want to miss anything these next few days...<br>
 
-Step 2: Here is my new ebook: <a href='https://bit.ly/3nLvviu'>7 Steps to Becoming A Super Affiliate</a>
+Step 2: Here is my new ebook: <a href=f"{os.getenv('LINK')}">7 Steps to Becoming A Super Affiliate</a>
 <br>
 This is my manual on how Jonathan became a super affiliate in under a year and left his job as an electrical engineer…
 <br>
@@ -106,8 +106,8 @@ Oyinloye Quareeb
         try:
             with smtplib.SMTP("smtp.gmail.com") as connection:
                 connection.starttls()
-                connection.login(password=PASSWORD, user=EMAIL)
-                connection.sendmail(from_addr=EMAIL, to_addrs=user_email,
+                connection.login(password=os.getenv("PASSWORD"), user=os.getenv("EMAIL"))
+                connection.sendmail(from_addr=os.getenv("EMAIL"), to_addrs=user_email,
                                     msg=message.as_string())
         except:
             print("error")
@@ -127,7 +127,7 @@ def mails():
         for user in all_users:
             message = MIMEMultipart("alternative")
             message["Subject"] = form.subject.data
-            message["From"] = EMAIL
+            message["From"] = os.getenv("EMAIL")
             message["To"] = user.email
             html = f"""\
             {form.message.data}
@@ -137,8 +137,8 @@ def mails():
             try:
                 with smtplib.SMTP("smtp.gmail.com") as connection:
                     connection.starttls()
-                    connection.login(password=PASSWORD, user=EMAIL)
-                    connection.sendmail(from_addr=EMAIL, to_addrs=user.email,
+                    connection.login(password=os.getenv("PASSWORD"), user=os.getenv("EMAIL"))
+                    connection.sendmail(from_addr=os.getenv("EMAIL"), to_addrs=user.email,
                                         msg=message.as_string())
             except:
                 pass
