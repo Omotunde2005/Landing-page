@@ -1,6 +1,6 @@
 {% include "base.html" %}
  <p class="note-message"><span class="note"><u>Note:</u></span>The ebook will be sent to your email. Lookout for this email-address("Oyinloyequareeboyinloye@gmail.com") in your inbox.
-It is my email address which I will use to send the ebook. If you don't get the mail upon sign up, check your spam.
+It is my email address which I will use to send the ebook. If you don't get a mail that contains the free ebook after you drop your email below, check your spam.
 Thank You.</p>
 <div class="box">
     <img src="{{ url_for('static', filename='Cover.png') }}">
@@ -15,7 +15,7 @@ Thank You.</p>
     <form action="{{ url_for('register') }}" method="post">
     	<input type="text" name="name" placeholder="Name" required="required" /><br>
 		<input type="email" name="email" placeholder="Email" required="required" /><br>
-        <button style="background-color: black; color: white;" type="submit" class="btn btn-primary btn-block btn-large">Sign me up.</button>
+        <button style="background-color: black; color: white;" type="submit" class="btn btn-primary btn-block btn-large">Get free ebook</button>
     </form>
 </div>
 
