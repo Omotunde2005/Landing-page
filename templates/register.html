@@ -1,0 +1,23 @@
+{% include "base.html" %}
+ <p class="note-message"><span class="note"><u>Note:</u></span>The ebook will be sent to your email. Lookout for this email-address("Oyinloyequareeboyinloye@gmail.com") in your inbox.
+It is my email address which I will use to send the ebook. If you don't get the mail upon sign up, check your spam.
+Thank You.</p>
+<div class="box">
+    <img src="{{ url_for('static', filename='Cover.png') }}">
+	<h2>GET FREE EBOOK</h2>
+      {% with messages = get_flashed_messages() %}
+    {% if messages: %}
+    {% for message in messages: %}
+<p style="color: green;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+    <form action="{{ url_for('register') }}" method="post">
+    	<input type="text" name="name" placeholder="Name" required="required" /><br>
+		<input type="email" name="email" placeholder="Email" required="required" /><br>
+        <button style="background-color: black; color: white;" type="submit" class="btn btn-primary btn-block btn-large">Sign me up.</button>
+    </form>
+</div>
+
+
+{% include "footer.html" %}

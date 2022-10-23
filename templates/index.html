@@ -1,0 +1,75 @@
+{% include "base.html" %}
+
+
+<section class="header">
+    <div class="row">
+        <div class="col-lg-6">
+              <h1>The 7 steps<br> to becoming a <span  class="span">Super Affiliate</span></h1>
+    <p class="bio">How I left my 9-5 and became my own boss. Click the button below to get the complete blueprint(free) on how I became my
+        own boss and left my soul-sucking job.</p>
+
+  <a href="{{ url_for('register') }}" class="btn btn-primary btn-block btn-large">Give me access for free</a>
+    <br>
+    <br>
+        </div>
+        <div class="col-lg-6">
+    <img src="{{ url_for('static', filename='Cover.png') }}">
+        </div>
+            <hr>
+        </div>
+
+
+
+
+</section>
+
+<section class="about">
+
+    <h2>IT IS HIGH TIME YOU...</h2>
+    <ul>
+    <li><p>Say goodbye to your soul-sucking job</p></li>
+    <li><p>Create a Passive income machine from home</p></li>
+    <li><p>Build a life of complete financial freedom</p></li>
+    <li><p>Create Multiple Passive Income streams on Autopilot, which allowed me to have complete freedom to do what
+    I want and when I want to do it</p></li>
+    </ul>
+     <a href="{{ url_for('register') }}" class="btn btn-primary btn-block btn-large">Give me free access now</a>
+</section>
+<br>
+
+<!--testimonials-->
+<hr>
+<br>
+
+  <section class="colored-section" id="testimonials">
+
+      <h3>See what others have to say about my books and courses</h3>
+
+      <div  id="testimonial-carousel" class="carousel slide" data-bs-ride="carousel" data-ride="false">
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <h2>Thank you Jonathan for all you do. Following up on your ebooks and courses is the best decision of my life</h2>
+    <img class="testimonial-img" src="../static/Daniel.png" alt="Receipt img">
+    <em>Daniel Chou</em>
+    </div>
+    <div class="carousel-item">
+       <h2 class="testimonial-text">I was quite hesitant at first. I believed it's just one of those fake make money online
+       courses that trick people into buying useless courses. But I'm glad i followed up on this one. Thanks for all the
+       free courses/ebooks and materials too. May God reward you for all you do</h2>
+    <img class="testimonial-img" src="../static/offer.png" alt="testimonial">
+    <em>J.M Andrew</em>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#testimonial-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#testimonial-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+  </section>
+{% include 'footer.html' %}
