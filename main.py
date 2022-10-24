@@ -22,9 +22,9 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 Bootstrap(app)
 ckeditor = CKEditor(app)
-app.secret_key = "EmilojuEdunOmobolanlesimfc2005."
-app.config['SECRET_KEY'] = 'my_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.secret_key = os.getenv("SECRET_KEY")
+app.config['SECRET_KEY'] = os.getenv("DATA_KEY")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("LINK")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
