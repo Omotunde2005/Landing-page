@@ -22,9 +22,9 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 Bootstrap(app)
 ckeditor = CKEditor(app)
-app.secret_key = os.environ.get("SECRET_KEY")
-app.config['SECRET_KEY'] = os.environ.get("DATA_KEY")
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("URL")
+app.secret_key = os.getenv("SECRET_KEY")
+app.config['SECRET_KEY'] = os.getenv("DATA_KEY")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -64,7 +64,7 @@ def register():
         user_name = request.form["name"]
         message = MIMEMultipart("alternative")
         message["Subject"] = "Lets Goo! Your 6-Figure Ebook is inside!"
-        message["From"] = os.environ.get("EMAIL")
+        message["From"] = os.getenv("EMAIL")
         message["To"] = user_email
         html = f"""\
         <h1>Hi, {user_name}</h1>
@@ -84,7 +84,7 @@ If you use Gmail, just drag this email over to the “Primary” tab and drop it
 
 Trust me, you don't want to miss anything these next few days...<br>
 
-Step 2: Here is my new ebook: <a href=f"{os.environ.get('LINK')}">7 Steps to Becoming A Super Affiliate</a>
+Step 2: Here is my new ebook: <a href=f"{os.getenv('LINK')}">7 Steps to Becoming A Super Affiliate</a>
 <br>
 This is my manual on how Jonathan became a super affiliate in under a year and left his job as an electrical engineer…
 <br>
@@ -106,8 +106,8 @@ Oyinloye Quareeb
         try:
             with smtplib.SMTP("smtp.gmail.com") as connection:
                 connection.starttls()
-                connection.login(password=os.environ.get("PASSWORD"), user=os.environ.get("EMAIL"))
-                connection.sendmail(from_addr=os.environ.get("EMAIL"), to_addrs=user_email,
+                connection.login(password=os.getenv("PASSWORD"), user=os.getenv("EMAIL"))
+                connection.sendmail(from_addr=os.getenv("EMAIL"), to_addrs=user_email,
                                     msg=message.as_string())
         except:
             print("error")
@@ -127,7 +127,7 @@ def mails():
         for user in all_users:
             message = MIMEMultipart("alternative")
             message["Subject"] = form.subject.data
-            message["From"] = os.environ.get("EMAIL")
+            message["From"] = os.getenv("EMAIL")
             message["To"] = user.email
             html = f"""\
             {form.message.data}
@@ -137,8 +137,8 @@ def mails():
             try:
                 with smtplib.SMTP("smtp.gmail.com") as connection:
                     connection.starttls()
-                    connection.login(password=os.environ.get("PASSWORD"), user=os.environ.get("EMAIL"))
-                    connection.sendmail(from_addr=os.environ.get("EMAIL"), to_addrs=user.email,
+                    connection.login(password=os.getenv("PASSWORD"), user=os.getenv("EMAIL"))
+                    connection.sendmail(from_addr=os.getenv("EMAIL"), to_addrs=user.email,
                                         msg=message.as_string())
             except:
                 pass
