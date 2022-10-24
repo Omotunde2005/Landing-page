@@ -24,7 +24,7 @@ Bootstrap(app)
 ckeditor = CKEditor(app)
 app.secret_key = os.getenv("SECRET_KEY")
 app.config['SECRET_KEY'] = os.getenv("DATA_KEY")
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("LINK")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -48,7 +48,7 @@ class MailForm(FlaskForm):
 
 
 # Line below only required once, when creating DB.
-#db.create_all()
+db.create_all()
 
 
 @app.route('/')
