@@ -48,7 +48,7 @@ class MailForm(FlaskForm):
 
 
 # Line below only required once, when creating DB.
-db.create_all()
+#db.create_all()
 
 
 @app.route('/')
@@ -110,7 +110,7 @@ Oyinloye Quareeb
                 connection.sendmail(from_addr=os.getenv("EMAIL"), to_addrs=user_email,
                                     msg=message.as_string())
         except:
-            print("error")
+            pass
         else:
             new_user = User(email=user_email, name=user_name)
             db.session.add(new_user)
@@ -119,7 +119,7 @@ Oyinloye Quareeb
     return render_template("register.html", date=DATE)
 
 
-@app.route("/send/emails/", methods=["POST", "GET"])
+@app.route("/send/emails", methods=["POST", "GET"])
 def mails():
     form = MailForm()
     all_users = db.session.query(User).all()
