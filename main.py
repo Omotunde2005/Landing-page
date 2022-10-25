@@ -13,7 +13,8 @@ import smtplib
 import time
 import os
 DATE = dt.datetime.now().year
-
+PASSWORD = os.environ.get("PASSWORD")
+EMAIL = os.environ.get("EMAIL")
 
 
 app = Flask(__name__)
@@ -64,50 +65,50 @@ def register():
         user_name = request.form["name"]
         message = MIMEMultipart("alternative")
         message["Subject"] = "Lets Goo! Your 6-Figure Ebook is inside!"
-        message["From"] = os.getenv("EMAIL")
+        message["From"] = EMAIL
         message["To"] = user_email
         html = f"""\
         <h1>Hi, {user_name}</h1>
 
-<p style="font-size: 1rem;" >Oyinloye Quareeb here..</p>
+        <p style="font-size: 1rem;" >Oyinloye Quareeb here..</p>
 
-<p style="line-height: 2; font-size: 1.2rem; font-family: Montserrat;">Super excited to share this new ebook with you...
-<br>
+        <p style="line-height: 2; font-size: 1.2rem; font-family: Montserrat;">Super excited to share this new ebook with you...
+        <br>
 
-I will get into the details on how Jonathan left his soul sucking 9-5 job tomorrow...<br>
+         I will get into the details on how Jonathan left his soul sucking 9-5 job tomorrow...<br>
 
-But for now, follow these next few steps. I want to help you because TRUST me, he hated his job so bad. Do this now…<br>
+         But for now, follow these next few steps. I want to help you because TRUST me, he hated his job so bad. Do this now…<br>
 
-Step 1:  Make sure to whitelist my emails or add me as a contact. Just in case my emails don't end up in your inbox..
-<br>
-If you use Gmail, just drag this email over to the “Primary” tab and drop it there.<br>
+         Step 1:  Make sure to whitelist my emails or add me as a contact. Just in case my emails don't end up in your inbox..
+         <br>
+         If you use Gmail, just drag this email over to the “Primary” tab and drop it there.<br>
 
-Trust me, you don't want to miss anything these next few days...<br>
+         Trust me, you don't want to miss anything these next few days...<br>
 
-Step 2: Here is my new ebook: <a href=f"{os.getenv('LINK')}">7 Steps to Becoming A Super Affiliate</a>
-<br>
-This is my manual on how Jonathan became a super affiliate in under a year and left his job as an electrical engineer…
-<br>
+         Step 2: Here is my new ebook: <a href=f"{os.getenv('LINK')}">7 Steps to Becoming A Super Affiliate</a>
+         <br>
+         This is my manual on how Jonathan became a super affiliate in under a year and left his job as an electrical engineer…
+         <br>
 
-This is the exact blueprint that has now helped thousands of students...</p><br>
+         This is the exact blueprint that has now helped thousands of students...</p><br>
 
-<h4 style="font-size: 1.3rem;">Thank you for taking the time to open and read...</h4><br>
-<br>
+         <h4 style="font-size: 1.3rem;">Thank you for taking the time to open and read...</h4><br>
+         <br>
 
-<p style="font-size: 1.3rem;">I would love to get to know you as well, reply to this email and let me know WHY you want 
-to do this...</p>
-<br>
-<h4>Thank you,</h4>
-<br>
-Oyinloye Quareeb
-               """
+         <p style="font-size: 1.3rem;">I would love to get to know you as well, reply to this email and let me know WHY you want 
+         to do this...</p>
+         <br>
+         <h4>Thank you,</h4>
+         <br>
+         Oyinloye Quareeb
+                      """
         text = MIMEText(html, "html")
         message.attach(text)
         try:
             with smtplib.SMTP("smtp.gmail.com") as connection:
                 connection.starttls()
-                connection.login(password=os.getenv("PASSWORD"), user=os.getenv("EMAIL"))
-                connection.sendmail(from_addr=os.getenv("EMAIL"), to_addrs=user_email,
+                connection.login(password=PASSWORD, user=EMAIL)
+                connection.sendmail(from_addr=EMAIL, to_addrs=user_email,
                                     msg=message.as_string())
         except:
             pass
@@ -127,7 +128,7 @@ def mails():
         for user in all_users:
             message = MIMEMultipart("alternative")
             message["Subject"] = form.subject.data
-            message["From"] = os.getenv("EMAIL")
+            message["From"] = EMAIL
             message["To"] = user.email
             html = f"""\
             {form.message.data}
@@ -137,8 +138,8 @@ def mails():
             try:
                 with smtplib.SMTP("smtp.gmail.com") as connection:
                     connection.starttls()
-                    connection.login(password=os.getenv("PASSWORD"), user=os.getenv("EMAIL"))
-                    connection.sendmail(from_addr=os.getenv("EMAIL"), to_addrs=user.email,
+                    connection.login(password=PASSWORD, user=EMAIL)
+                    connection.sendmail(from_addr=EMAIL, to_addrs=user.email,
                                         msg=message.as_string())
             except:
                 pass
