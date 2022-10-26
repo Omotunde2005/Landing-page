@@ -13,8 +13,8 @@ import smtplib
 import time
 import os
 DATE = dt.datetime.now().year
-PASSWORD = os.environ.get("PASSWORD")
-EMAIL = os.environ.get("EMAIL")
+PASSWORD = os.getenv("PASSWORD")
+EMAIL = os.getenv("EMAIL")
 
 
 app = Flask(__name__)
