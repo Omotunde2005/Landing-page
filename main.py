@@ -110,13 +110,14 @@ def register():
                 connection.login(password=PASSWORD, user=EMAIL)
                 connection.sendmail(from_addr=EMAIL, to_addrs=user_email,
                                     msg=message.as_string())
+                new_user = User(email=user_email, name=user_name)
+                db.session.add(new_user)
+                db.session.commit()
+                return redirect(url_for('offer'))
         except:
             pass
         else:
-            new_user = User(email=user_email, name=user_name)
-            db.session.add(new_user)
-            db.session.commit()
-            return redirect(url_for('offer'))
+            pass
     return render_template("register.html", date=DATE)
 
 
