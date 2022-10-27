@@ -105,10 +105,7 @@ def register():
         text = MIMEText(html, "html")
         message.attach(text)
      
-        with smtplib.SMTP("smtp.gmail.com") as connection:
-            connection.starttls()
-            connection.login(password=PASSWORD, user=EMAIL)
-            connection.sendmail(from_addr=EMAIL, to_addrs=user_email, msg=message.as_string())
+        
         new_user = User(email=user_email, name=user_name)
         db.session.add(new_user)
         db.session.commit()
