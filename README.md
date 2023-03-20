@@ -1,3 +1,6 @@
 # Landing-page
 Landing-page-with-database
-A Landing Page/Sales Funnel for Affiliate Marketing
+
+<p>This is a simple landing page built with FLASK, CSS, HTML and BOOTSTRAPA</p>
+
+<p>It has a database for storing client's emails for email automation</p>
